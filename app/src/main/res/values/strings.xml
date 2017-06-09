@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RxJavaSample</string>
+    <string name="button">Button</string>
+
+    <string name="title_activity_net_video">NetVideoActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
