@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\Cabin\RxJavaSample\vitamio\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\Cabin\RxJavaSample\vitamio\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\2017MyDemo\RxJavaSample\vitamio\src\main\shaders"/></dataSet><dataSet config="debug"><source path="F:\2017MyDemo\RxJavaSample\vitamio\src\debug\shaders"/></dataSet></merger>

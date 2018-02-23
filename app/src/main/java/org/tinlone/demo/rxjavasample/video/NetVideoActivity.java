@@ -51,7 +51,7 @@ public class NetVideoActivity extends AppCompatActivity {
         mVideoView.requestFocus();
         mVideoView.setBufferSize(1024 * 1024);
         mVideoView.setVideoChroma(MediaPlayer.VIDEOCHROMA_RGB565);
-        mVideoView.setVideoPath(Api.VEDIO_URL);
+        mVideoView.setVideoPath(Api.VIDEO_URL);
         preparePlayVideo();
     }
 

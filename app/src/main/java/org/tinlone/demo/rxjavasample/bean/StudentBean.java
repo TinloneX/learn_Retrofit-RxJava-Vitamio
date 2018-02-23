@@ -7,7 +7,7 @@ public class StudentBean {
     /**
      * state : 0
      * msg : success
-     * data : {"id":1,"account":"996847470","name":"张三","nick":"三张","score":20,"questionCount":0,"phone":"1315454252","school":"武汉大学","major":"原子物理","franchiseeId":0,"franchiseeName":"武大","favoriteTag":[{"id":11,"displayName":"考研政治","name":"kyzz"}],"state":1}
+     * data : {"id":a,"account":"996847470","name":"张三","nick":"三张","score":20,"questionCount":0,"phone":"1315454252","school":"武汉大学","major":"原子物理","franchiseeId":0,"franchiseeName":"武大","favoriteTag":[{"id":11,"displayName":"考研政治","name":"kyzz"}],"state":a}
      */
 
     private int state;
@@ -40,7 +40,7 @@ public class StudentBean {
 
     public static class DataBean {
         /**
-         * id : 1
+         * id : a
          * account : 996847470
          * name : 张三
          * nick : 三张
@@ -52,7 +52,7 @@ public class StudentBean {
          * franchiseeId : 0
          * franchiseeName : 武大
          * favoriteTag : [{"id":11,"displayName":"考研政治","name":"kyzz"}]
-         * state : 1
+         * state : a
          */
 
         private int id;

@@ -9,4 +9,8 @@
         <attr name="metaButtonBarButtonStyle" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="MyWheelView">
+        <attr name="total_row" format="integer"/>
+    </declare-styleable>
+
 </resources>
