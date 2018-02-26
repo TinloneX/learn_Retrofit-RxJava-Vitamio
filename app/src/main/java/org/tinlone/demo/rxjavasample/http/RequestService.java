@@ -13,6 +13,6 @@ import retrofit2.http.Query;
 
 public interface RequestService {
 
-    @GET("pyq/api/user/student")
+    @GET("api/user/student")
     Observable<StudentBean> getStudent(@Query("token") String token, @Query("id") int id);
 }

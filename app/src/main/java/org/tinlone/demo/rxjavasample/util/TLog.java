@@ -2,11 +2,16 @@ package org.tinlone.demo.rxjavasample.util;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import org.tinlone.demo.rxjavasample.util.adapt.PhoneBrand;
+import org.tinlone.demo.rxjavasample.util.adapt.PhoneInfo;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.UnknownHostException;
+import java.util.Collection;
 
 /**
  * @author zhaojinlong
@@ -15,7 +20,7 @@ import java.net.UnknownHostException;
 
 public class TLog {
 
-    public static final String TAG = "zjl";
+    private static final String TAG = "zjl";
     private static boolean showLog = true;
 
     private TLog() {
@@ -112,6 +117,8 @@ public class TLog {
     public static String valueOf(Object object) {
         if (object instanceof Throwable) {
             return getStackTraceString((Throwable) object);
+        } else if (object instanceof Collection) {
+            return String.valueOf("集合的长度：" + object == null ? "null" : ((Collection) object).size());
         }
         return object == null ? "null" : object.toString();
     }
@@ -156,9 +163,23 @@ public class TLog {
         info(valueOf("This app heap-size = " + heapSize + " M "));
     }
 
+    public static void phoneInfo(Context context) {
+        try {
+            PhoneBrand.showPhoneModel();
+            heapSize(context);
+            info(valueOf("手机安卓SDK版本: %d", Build.VERSION.SDK_INT));
+            info(valueOf("手机屏幕DPI : %s", DensityUtil.getDensity()));
+            info(valueOf("手机屏幕 宽 * 高 : %s * %s", DensityUtil.getScreenWidth(), DensityUtil.getScreenHeight()));
+            PhoneInfo.info();
+        } catch (Exception e) {
+            info("打印信息失败");
+        }
+    }
+
     public static void info(Object object) {
         if (showLog) {
             Log.i("phoneInfo", valueOf(object));
         }
     }
+
 }

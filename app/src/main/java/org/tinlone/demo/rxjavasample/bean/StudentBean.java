@@ -2,6 +2,9 @@ package org.tinlone.demo.rxjavasample.bean;
 
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 public class StudentBean {
 
     /**
