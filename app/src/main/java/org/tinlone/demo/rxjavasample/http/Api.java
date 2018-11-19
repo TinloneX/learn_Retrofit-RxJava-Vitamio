@@ -12,5 +12,5 @@ public class Api {
     /**
      * 文件下载路径
      */
-    public static final String VIDEO_URL = "http://192.168.203.136:8080/static/download/Experience.mp4";
+    public static final String VIDEO_URL = "https://tinlone.com/static/Experience.mp4";
 }

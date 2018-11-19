@@ -23,7 +23,7 @@ android {
 
     }
 
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
 
     task makeJar(type: Copy) {
         from('build/intermediates/bundles/release/')

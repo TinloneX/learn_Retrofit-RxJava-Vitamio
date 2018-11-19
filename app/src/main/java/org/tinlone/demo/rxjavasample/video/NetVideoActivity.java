@@ -52,44 +52,36 @@ public class NetVideoActivity extends AppCompatActivity {
         mVideoView.setBufferSize(1024 * 1024);
         mVideoView.setVideoChroma(MediaPlayer.VIDEOCHROMA_RGB565);
         mVideoView.setVideoPath(Api.VIDEO_URL);
+        mVideoView.setMediaController(new MediaController(this));
         preparePlayVideo();
     }
 
     private void preparePlayVideo() {
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                if (currentPosition > 0) {
-                    mVideoView.seekTo(currentPosition);
-                } else {
-                    mp.setPlaybackSpeed(1.0f);
-                }
+        mVideoView.setOnPreparedListener(mp -> {
+            if (currentPosition > 0) {
+                mVideoView.seekTo(currentPosition);
+            } else {
+                mp.setPlaybackSpeed(1.0f);
             }
         });
-        mVideoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                switch (what) {
-                    case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-                        caching();
-                        break;
-                    case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-                        playing();
-                        break;
-                    case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
+        mVideoView.setOnInfoListener((mp, what, extra) -> {
+            switch (what) {
+                case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+                    caching();
+                    break;
+                case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+                    playing();
+                    break;
+                case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
 //                        Tips.snackyTest(NetVideoActivity.this, extra + "%");
-                        break;
-                }
-                return false;
+                    break;
             }
+            return false;
         });
 
-        mVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                Tips.snackyError(NetVideoActivity.this, "Error Code:" + what);
-                return false;
-            }
+        mVideoView.setOnErrorListener((mp, what, extra) -> {
+            Tips.snackyError(NetVideoActivity.this, "Error Code:" + what);
+            return false;
         });
     }
 

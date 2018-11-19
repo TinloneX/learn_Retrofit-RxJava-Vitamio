@@ -43,7 +43,6 @@ public class TestView1 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.RED);
@@ -70,17 +69,17 @@ public class TestView1 extends View {
                 points[i] = mRandom.nextInt(height);
             }
         }
-        canvas.drawPoints(points,250,750, mPaint);
+        canvas.drawPoints(points, 250, 750, mPaint);
 
         canvas.drawRect(210, 210, 800, 800, mPaint);
 
         RectF rect = new RectF(820, 80, 810, 800);
         canvas.drawRect(rect, mPaint);
 
-        Rect rect2 =  new Rect(830, 80, 920, 800);
+        Rect rect2 = new Rect(830, 80, 920, 800);
         canvas.drawRect(rect2, mPaint);
 
-         mPaint.setColor(Color.GREEN);
+        mPaint.setColor(Color.GREEN);
         RectF rectx = new RectF(200, 20, 600, 200);
         //画矩形
         canvas.drawRect(rectx, mPaint);

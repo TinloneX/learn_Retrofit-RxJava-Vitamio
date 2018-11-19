@@ -21,6 +21,7 @@ public class RecyclerviewActivity extends AppCompatActivity {
     private RecyclerAdapter mRecyclerAdapter;
     private ImageButton bottom;
     private int mHeight;
+    private ObjectAnimator footerAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +63,17 @@ public class RecyclerviewActivity extends AppCompatActivity {
 
     }
 
-    private ObjectAnimator footerAnim;
-
     private void setRecyclerView() {
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            int countY = 0;
+            boolean down = false;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
-
-            int countY = 0;
-            boolean down = false;
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -100,7 +99,7 @@ public class RecyclerviewActivity extends AppCompatActivity {
                         footerAnim.reverse();
                         down = false;
                         Log.i("zjl", "(RecyclerviewActivity.java:103)--onScrolled: 上来");
-                    }else {
+                    } else {
                         Log.i("zjl", "(RecyclerviewActivity.java:105)--onScrolled: 没下去，不用上来");
                     }
                     countY = 0;

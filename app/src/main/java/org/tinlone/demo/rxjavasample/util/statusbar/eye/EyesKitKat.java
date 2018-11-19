@@ -54,7 +54,7 @@ class EyesKitKat {
         }
     }
 
-    static void setStatusBarImage(Activity activity,@DrawableRes int imgRes) {
+    static void setStatusBarImage(Activity activity, @DrawableRes int imgRes) {
         Window window = activity.getWindow();
         //设置Window为全透明
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

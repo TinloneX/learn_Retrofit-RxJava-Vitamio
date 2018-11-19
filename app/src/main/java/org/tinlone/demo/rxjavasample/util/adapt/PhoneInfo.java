@@ -27,7 +27,7 @@ public class PhoneInfo {
 
     public static void info() {
         isRoot();
-        TLog.i(TAG,getAvailMemory());
+        TLog.i(TAG, getAvailMemory());
         getCpuInfo();
     }
 
@@ -79,7 +79,7 @@ public class PhoneInfo {
      */
     @SuppressLint("HardwareIds")
     public static String[] getInfo(final Context context) {
-        final String [] result = new String[3];
+        final String[] result = new String[3];
 
         PermissionUtil.checkAndRequestPermission(context, Manifest.permission.READ_PHONE_STATE, new PermissionUtil.PermissionCallback() {
             @SuppressLint("MissingPermission")

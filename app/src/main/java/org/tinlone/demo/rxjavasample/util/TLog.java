@@ -15,7 +15,7 @@ import java.util.Collection;
 
 /**
  * @author zhaojinlong
- *         2016/12/20 0020
+ * 2016/12/20 0020
  */
 
 public class TLog {

@@ -21,9 +21,9 @@ import java.lang.reflect.Method;
 
 /**
  * @author Jaeger
- *         16/2/14
- *         Email: chjie.jaeger@gmail.com
- *         GitHub: https://github.com/laobie
+ * 16/2/14
+ * Email: chjie.jaeger@gmail.com
+ * GitHub: https://github.com/laobie
  */
 public class StatusBarUtil {
 
@@ -713,7 +713,7 @@ public class StatusBarUtil {
      */
     public static void setStatusWhite(Activity activity) {
         int mode = setStatusBarLightMode(activity);
-        if (mode != 0){
+        if (mode != 0) {
             setColor(activity, Color.WHITE, 0);
         }
     }

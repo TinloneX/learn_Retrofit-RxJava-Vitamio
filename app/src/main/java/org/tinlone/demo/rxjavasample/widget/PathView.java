@@ -137,15 +137,15 @@ public class PathView extends View {
         };
         canvas.drawPosText("Hello,World", pos, paint);
         String familyName = "宋体";
-        Typeface font = Typeface.create(familyName,Typeface.NORMAL);
+        Typeface font = Typeface.create(familyName, Typeface.NORMAL);
         paint.setTypeface(font);
-        canvas.drawText("宋体字,Hello,World",10,1300, paint);
+        canvas.drawText("宋体字,Hello,World", 10, 1300, paint);
         //得到AssetManager
-        AssetManager mgr=mContext.getAssets();
+        AssetManager mgr = mContext.getAssets();
         //根据路径得到Typeface
-        Typeface typeface=Typeface.createFromAsset(mgr, "xtr.ttf");
+        Typeface typeface = Typeface.createFromAsset(mgr, "xtr.ttf");
         paint.setTypeface(typeface);
         paint.setTextSize(130f);
-        canvas.drawText("新唐人简篆体",10,1500, paint);
+        canvas.drawText("新唐人简篆体", 10, 1500, paint);
     }
 }

@@ -14,9 +14,8 @@ import org.tinlone.demo.rxjavasample.R;
 import java.util.List;
 
 /**
- *
  * 未完工
- * 
+ *
  * @author Administrator
  * @date 2017/12/18 0018
  */

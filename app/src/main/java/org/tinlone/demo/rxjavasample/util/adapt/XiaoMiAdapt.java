@@ -19,7 +19,6 @@ public class XiaoMiAdapt extends BaseAdapt {
     private static final String ACTION_PERMISSION = "miui.intent.action.APP_PERM_EDITOR";
 
     public static void jumpToSetPermission(Context context) {
-        TLog.w("----------FOCUS-----------当前包名：" + PACKAGE_NAME);
         if (!PhoneBrand.isXiaoMi()) return;
         Intent intent = new Intent();
         intent.setAction(ACTION_PERMISSION);
@@ -30,7 +29,7 @@ public class XiaoMiAdapt extends BaseAdapt {
 
     /**
      * 检查是否拥有查看通话记录权限（建议在{@link Context#checkSelfPermission(String)}之后执行）
-     * 方法内部调用{@link #checkOpsPermission(Context, String, XiaoMiPermissionCallback)}
+     * 方法内部调用{@link XiaoMiAdapt#checkOpsPermission(Context, String, XiaoMiPermissionCallback)}
      *
      * @param context  上下文对象
      * @param callback 响应回调{@link XiaoMiPermissionCallback}

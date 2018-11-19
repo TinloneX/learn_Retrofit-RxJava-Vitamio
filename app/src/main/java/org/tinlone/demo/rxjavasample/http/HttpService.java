@@ -29,6 +29,7 @@ public interface HttpService {
 
     /**
      * 通过 List<MultipartBody.Part> 传入多个part实现多文件上传
+     *
      * @param parts 每个part代表一个
      * @return 状态信息
      */
@@ -38,6 +39,7 @@ public interface HttpService {
 
     /**
      * 通过 MultipartBody和@body作为参数来上传
+     *
      * @param multipartBody MultipartBody包含多个Part
      * @return 状态信息
      */

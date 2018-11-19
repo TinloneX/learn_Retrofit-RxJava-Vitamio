@@ -41,6 +41,15 @@ public class StudentBean {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "StudentBean{" +
+                "state=" + state +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
     public static class DataBean {
         /**
          * id : a
@@ -176,6 +185,25 @@ public class StudentBean {
             this.favoriteTag = favoriteTag;
         }
 
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "id=" + id +
+                    ", account='" + account + '\'' +
+                    ", name='" + name + '\'' +
+                    ", nick='" + nick + '\'' +
+                    ", score=" + score +
+                    ", questionCount=" + questionCount +
+                    ", phone='" + phone + '\'' +
+                    ", school='" + school + '\'' +
+                    ", major='" + major + '\'' +
+                    ", franchiseeId=" + franchiseeId +
+                    ", franchiseeName='" + franchiseeName + '\'' +
+                    ", state=" + state +
+                    ", favoriteTag=" + favoriteTag +
+                    '}';
+        }
+
         public static class FavoriteTagBean {
             /**
              * id : 11
@@ -220,33 +248,5 @@ public class StudentBean {
                         '}';
             }
         }
-
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "id=" + id +
-                    ", account='" + account + '\'' +
-                    ", name='" + name + '\'' +
-                    ", nick='" + nick + '\'' +
-                    ", score=" + score +
-                    ", questionCount=" + questionCount +
-                    ", phone='" + phone + '\'' +
-                    ", school='" + school + '\'' +
-                    ", major='" + major + '\'' +
-                    ", franchiseeId=" + franchiseeId +
-                    ", franchiseeName='" + franchiseeName + '\'' +
-                    ", state=" + state +
-                    ", favoriteTag=" + favoriteTag +
-                    '}';
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "StudentBean{" +
-                "state=" + state +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
     }
 }

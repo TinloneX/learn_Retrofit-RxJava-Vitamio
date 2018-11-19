@@ -185,8 +185,8 @@ public class Eyes {
         }
     }
 
-    public static void setStatusBarImage(Activity activity){
-        if (Build.VERSION.SDK_INT >= KITKAT){
+    public static void setStatusBarImage(Activity activity) {
+        if (Build.VERSION.SDK_INT >= KITKAT) {
             translucentStatusBar(activity);
             EyesKitKat.setStatusBarImage(activity, R.drawable.shape_status);
         }

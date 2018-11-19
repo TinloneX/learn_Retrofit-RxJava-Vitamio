@@ -10,13 +10,13 @@ public class MyApplication extends Application {
 
     static MyApplication mApplication;
 
+    public static MyApplication getContext() {
+        return mApplication;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-       mApplication = this;
-    }
-
-    public static MyApplication getContext() {
-        return mApplication;
+        mApplication = this;
     }
 }

@@ -33,25 +33,17 @@ public class PermissionUtil {
                 PermissionChecker.checkSelfPermission(context, Manifest.permission.CALL_PHONE));
         boolean contactsPermission = (PackageManager.PERMISSION_GRANTED ==
                 PermissionChecker.checkSelfPermission(context, Manifest.permission.READ_CONTACTS));
-
-        Log.d("lengchenglog", "~~student~~~" + callRecordPermission + "!!!!!" + callPermission + "!!!!" + contactsPermission);
-
-        return contactsPermission == true && callRecordPermission == true && callPermission == true;
+        return contactsPermission && callRecordPermission && callPermission;
     }
 
     public static boolean hasMessagePermission(Context context) {
 //         判断权限
-        boolean sendMessagePermission = (PackageManager.PERMISSION_GRANTED ==
+        return (PackageManager.PERMISSION_GRANTED ==
                 PermissionChecker.checkSelfPermission(context, Manifest.permission.SEND_SMS));
-
-        return sendMessagePermission == true;
     }
 
     /**
      * this method just used test
-     *
-     * @param context
-     * @return
      */
     public static boolean hasCallPermission(Context context) {
         return (PackageManager.PERMISSION_GRANTED ==
@@ -95,14 +87,11 @@ public class PermissionUtil {
      * {@link Manifest.permission}
      *
      * @param request     REQUEST_CODE
-     * @param context
      * @param permissions Manifest.permission.CAMERA
-     * @return
      */
     public static int checkAndRequestPermission(int request, final Context context, String... permissions) {
         if (Build.VERSION.SDK_INT < 23) return Integer.MIN_VALUE;
 //        int requestCode = new Random().nextInt(100) + permissions.length;
-        Log.i("zjl", "权限请求标志----" + request);
         ArrayList<String> noPermission = new ArrayList<>();
         for (int i = 0; i < permissions.length; i++) {
             if (!hasPermission(context, permissions[i])) {
@@ -124,7 +113,6 @@ public class PermissionUtil {
                     request);
         } else {
             Log.d("", "权限数组中的权限都有" + permissions.length);
-//            return Integer.MIN_VALUE;
             return request;
         }
 
@@ -151,8 +139,6 @@ public class PermissionUtil {
 
     /**
      * 引导至设置页面
-     *
-     * @param context
      */
     public static void whenEverDenied(@NonNull Context context) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -198,11 +184,6 @@ public class PermissionUtil {
          * 权限可用
          */
         void allowed();
-
-        /**
-         * 权限不可用
-         */
-//        void ignored();
 
         /**
          * 权限不可用

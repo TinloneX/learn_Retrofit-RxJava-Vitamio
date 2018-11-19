@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.adapter.MyAdapter;
-import org.tinlone.demo.rxjavasample.config.ActivitiesListConfig;
+import org.tinlone.demo.rxjavasample.config.Configs;
 
 /**
  * @author Administrator
@@ -22,7 +22,7 @@ public class MyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my);
         initView();
         rvList.setLayoutManager(new LinearLayoutManager(this));
-        rvList.setAdapter(new MyAdapter(this, ActivitiesListConfig.getTitles(),ActivitiesListConfig.getAvtivities()));
+        rvList.setAdapter(new MyAdapter());
     }
 
     private void initView() {
