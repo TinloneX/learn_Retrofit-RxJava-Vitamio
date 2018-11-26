@@ -1,11 +1,7 @@
 package org.tinlone.demo.rxjavasample.config;
 
-import android.util.SparseArray;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Observable;
 
 /**
  * @author Administrator on 2018/2/26 0026.
