@@ -2,9 +2,11 @@ package org.tinlone.demo.rxjavasample.activity.rx;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.adapter.RBaseAdapter;
@@ -17,6 +19,7 @@ public class RxListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_list);
         RecyclerView mRvView = findViewById(R.id.rv_view);
+        SwipeRefreshLayout srlFresh = findViewById(R.id.srl_fresh);
         mRvView.setLayoutManager(new LinearLayoutManager(this));
         TextListAdapter adapter = new TextListAdapter(ObservableList.RX_TITLE);
         mRvView.setAdapter(adapter);
@@ -24,6 +27,10 @@ public class RxListActivity extends AppCompatActivity {
             Intent intent = new Intent(RxListActivity.this, RxLogActivity.class);
             intent.putExtra("position", position);
             startActivity(intent);
+        });
+        srlFresh.setOnRefreshListener(() -> {
+            adapter.notifyDataSetChanged();
+            srlFresh.setRefreshing(false);
         });
     }
 }

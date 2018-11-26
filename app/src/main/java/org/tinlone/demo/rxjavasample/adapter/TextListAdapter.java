@@ -1,7 +1,11 @@
 package org.tinlone.demo.rxjavasample.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.config.Configs;
@@ -34,9 +38,11 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
         mContents = contents;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onBindView(@NonNull BaseHolder holder, int position) {
         String text = mData.get(position) + (mContents == null ? "" : mContents.get(position));
+        TextView tv2 = (TextView) holder.getView(R.id.tv2);
         int r1 = mRandom.nextInt(256);
         int g1 = mRandom.nextInt(256);
         int b1 = mRandom.nextInt(256);
@@ -45,8 +51,16 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
         int tc = Color.rgb(inv(r1), inv(g1), inv(b1));
         text += String.format("\tTextColor:#%s%s%s", hex(inv(r1)), hex(inv(g1)), hex(inv(b1)));
         holder.itemView.setBackgroundColor(bg);
-        holder.setTextColor(R.id.tv2, tc);
-        holder.setText(R.id.tv2, text);
+        tv2.setTextColor(tc);
+        tv2.setText(text);
+//        holder.itemView.setOnTouchListener((v, event) -> {
+//            if (event.getX() <= tv2.getX() + tv2.getWidth() && event.getY() <= tv2.getY() + tv2.getHeight()) {
+//                tv2.requestFocusFromTouch();
+//            } else {
+//                holder.itemView.requestFocusFromTouch();
+//            }
+//            return false;
+//        });
     }
 
     private int inv(int co) {

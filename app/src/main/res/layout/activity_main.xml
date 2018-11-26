@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
+    android:fitsSystemWindows="true"
     tools:context="org.tinlone.demo.rxjavasample.activity.MainActivity">
+
+    <include layout="@layout/comment_title" />
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/normal_button"
+        android:text="Vitamio视频播放" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/normal_button"
+        android:text="倒计时"/>
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/normal_button"
+        android:text="计时"/>
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/normal_button"
+        android:text="自定义控件"/>
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/normal_button"
+        android:text="RxJava"/>
 
     <TextView
         android:id="@+id/tvInfo"
@@ -15,45 +45,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
-        android:text="Hello World!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        tools:ignore="RtlHardcoded" />
+        android:text="Hello World!" />
 
-    <Button
-        android:id="@+id/button1"
-        style="@style/normal_button"
-        android:text="Vitamio视频播放"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        tools:ignore="HardcodedText,MissingConstraints"/>
 
-    <Button
-        android:id="@+id/button2"
-        style="@style/normal_button"
-        android:text="倒计时"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText"/>
-
-    <Button
-        android:id="@+id/button3"
-        style="@style/normal_button"
-        android:text="计时"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:ignore="HardcodedText"/>
-
-    <Button
-        android:id="@+id/button4"
-        style="@style/normal_button"
-        android:text="自定义控件"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        tools:ignore="HardcodedText"/>
-
-    <Button
-        android:id="@+id/button5"
-        style="@style/normal_button"
-        android:text="RxJava"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        tools:ignore="HardcodedText"/>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

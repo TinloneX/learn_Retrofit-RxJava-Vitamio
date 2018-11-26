@@ -2,6 +2,7 @@ package org.tinlone.demo.rxjavasample.activity.rx;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -29,16 +30,17 @@ public class RxLogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_log);
         mTvInfo = findViewById(R.id.tv_info);
+        TextView tvTitle = findViewById(R.id.tv_title);
         ScrollView scrollView = findViewById(R.id.scrollView);
         mFab = findViewById(R.id.fab);
         position = getIntent().getIntExtra("position", DEFAULT_POSITION);
-        mTvInfo.setText(ObservableList.RX_TITLE.get(position));
+        tvTitle.setText(ObservableList.RX_TITLE.get(position));
         mFab.setMax(ObservableList.steps.get(position));
         doObservable();
         mFab.setOnClickListener(v -> {
             mFab.setProgress(0, true);
             if (mDisposable != null) {
-                if (!mDisposable.isDisposed()){
+                if (!mDisposable.isDisposed()) {
                     mTvInfo.append(String.format("\n中断执行：%s", Timer.end()));
                     mDisposable.dispose();
                 }
@@ -47,14 +49,14 @@ public class RxLogActivity extends AppCompatActivity {
         });
         scrollView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
             if (bottom >= (DensityUtil.getScreenHeight() - 300)) {
-                scrollView.post(() -> scrollView.scrollTo(0, bottom-100));
+                scrollView.post(() -> scrollView.scrollTo(0, bottom - 100));
             }
         });
     }
 
     @SuppressWarnings("unchecked")
     private void doObservable() {
-        mTvInfo.append(String.format("\n开始执行：%s", Timer.start()));
+        mTvInfo.append(Html.fromHtml(String.format("<br/><font color='#AF0000'>开始执行：%s</font>", Timer.start())));
         ObservableList.obs.get(position)
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
@@ -90,10 +92,11 @@ public class RxLogActivity extends AppCompatActivity {
 
     private void log(int index, Object info) {
         mFab.post(() -> {
-            mTvInfo.append(String.format("\nstep%s: %s", index, TLog.valueOf(info)));
+            mTvInfo.append(Html.fromHtml(String.format("<br/><font color='#00BFFF'>step%s: %s</font>", index, TLog.valueOf(info))));
+//            mTvInfo.append(String.format("\nstep%s: %s", index, TLog.valueOf(info)));
             mFab.setProgress(index + 1, index != 0);
             if ("onComplete".equals(String.valueOf(info))) {
-                mTvInfo.append(String.format("\n结束执行：%s", Timer.end()));
+                mTvInfo.append(Html.fromHtml(String.format("<br/><font color='#AF0000'>结束执行：%s</font>", Timer.end())));
             }
         });
     }

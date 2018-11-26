@@ -13,7 +13,7 @@ public class Timer {
         long millis = System.currentTimeMillis();
         long time = millis - timer;
         String result = TimeFormatUtil.hms(millis);
-        result += "\n执行总用时:" + TimeFormatUtil.hms(time) + "  " + time + "ms";
+        result += "<br/>执行总用时:" + TimeFormatUtil.hms(time) + "  " + time + "ms";
         timer = millis;
         return result;
     }
