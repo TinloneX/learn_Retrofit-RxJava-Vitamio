@@ -8,24 +8,26 @@ import android.support.v7.widget.RecyclerView;
 
 import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.activity.view.ViewATestActivity;
-import org.tinlone.demo.rxjavasample.adapter.RBaseAdapter;
 import org.tinlone.demo.rxjavasample.adapter.TextListAdapter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author Administrator
  */
 public class ViewListActivity extends AppCompatActivity {
 
-    private RecyclerView rvList;
-    private TextListAdapter adapter;
+    @BindView(R.id.rv_list)
+    RecyclerView rvList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
-        initView();
+        ButterKnife.bind(this);
         rvList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TextListAdapter();
+        TextListAdapter adapter = new TextListAdapter();
         adapter.setOnItemClickListener(position -> {
             Intent intent = new Intent(ViewListActivity.this, ViewATestActivity.class);
             Bundle bundle = new Bundle();
@@ -36,7 +38,4 @@ public class ViewListActivity extends AppCompatActivity {
         rvList.setAdapter(adapter);
     }
 
-    private void initView() {
-        rvList = findViewById(R.id.rv_list);
-    }
 }

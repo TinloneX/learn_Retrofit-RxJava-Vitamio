@@ -45,7 +45,7 @@ public abstract class RBaseAdapter<DATA, VH extends RBaseAdapter.BaseHolder> ext
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (mContext == null)
             mContext = parent.getContext();
-        return (VH) new BaseHolder(LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent,false));
+        return (VH) new BaseHolder(LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false));
     }
 
     @Override
@@ -117,6 +117,10 @@ public abstract class RBaseAdapter<DATA, VH extends RBaseAdapter.BaseHolder> ext
         return data;
     }
 
+    public interface OnItemClickListener {
+        void onClick(int position);
+    }
+
     public static class BaseHolder extends RecyclerView.ViewHolder {
 
         View mItemView;
@@ -138,10 +142,6 @@ public abstract class RBaseAdapter<DATA, VH extends RBaseAdapter.BaseHolder> ext
             ((TextView) mItemView.findViewById(tvId)).setTextColor(color);
         }
 
-    }
-
-    public interface OnItemClickListener {
-        void onClick(int position);
     }
 
 }

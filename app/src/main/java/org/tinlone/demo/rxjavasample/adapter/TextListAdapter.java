@@ -3,8 +3,6 @@ package org.tinlone.demo.rxjavasample.adapter;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.TextView;
 
 import org.tinlone.demo.rxjavasample.R;
@@ -38,6 +36,15 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
         mContents = contents;
     }
 
+    private static String hex(int number) {
+        StringBuilder builder = new StringBuilder(
+                Integer.toHexString(number & 0xff));
+        while (builder.length() < 2) {
+            builder.append("0");
+        }
+        return builder.toString().toUpperCase();
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onBindView(@NonNull BaseHolder holder, int position) {
@@ -65,14 +72,5 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
 
     private int inv(int co) {
         return (255 * 3 - co) / 2;
-    }
-
-    private static String hex(int number) {
-        StringBuilder builder = new StringBuilder(
-                Integer.toHexString(number & 0xff));
-        while (builder.length() < 2) {
-            builder.append("0");
-        }
-        return builder.toString().toUpperCase();
     }
 }

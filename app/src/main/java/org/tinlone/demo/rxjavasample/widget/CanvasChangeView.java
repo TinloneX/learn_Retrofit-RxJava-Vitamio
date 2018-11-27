@@ -57,12 +57,12 @@ public class CanvasChangeView extends View {
         return this;
     }
 
-    public CanvasChangeView skew(boolean need){
+    public CanvasChangeView skew(boolean need) {
         skx = need ? 1.732f : 1;
         return this;
     }
 
-    public void draw1(){
+    public void draw1() {
         init();
         invalidate();
     }
