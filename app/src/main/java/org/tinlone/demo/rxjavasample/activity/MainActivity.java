@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,8 +13,13 @@ import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.activity.rx.RxListActivity;
 import org.tinlone.demo.rxjavasample.util.CountObserver;
 import org.tinlone.demo.rxjavasample.util.CountUtil;
+import org.tinlone.demo.rxjavasample.util.TLog;
 import org.tinlone.demo.rxjavasample.video.NetVideoActivity;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -81,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
     Function<Boolean, ObservableSource<String>> doingTwo = o ->
             Observable.just(String.format("\n上传%s\n 返回图片路径%s\n", o ? "成功" : "失败",
-            Environment
-            .isExternalStorageEmulated()
-            ? Environment.getDataDirectory().getAbsolutePath()
-            : "获取路径失败"))
-            .delay(1, TimeUnit.SECONDS);
+                    Environment
+                            .isExternalStorageEmulated()
+                            ? Environment.getExternalStorageDirectory().getAbsolutePath()
+                            : "获取路径失败"))
+                    .delay(1, TimeUnit.SECONDS);
 
     private void multiAsync() {
         mTvInfo.append("\n 模拟上传图片");
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        dispose(mCountUp,subscribe);
+        dispose(mCountUp, subscribe);
     }
 
     private void dispose(Disposable... disposables) {

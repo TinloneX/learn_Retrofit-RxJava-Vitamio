@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import org.tinlone.demo.rxjavasample.R;
-import org.tinlone.demo.rxjavasample.config.Configs;
+import org.tinlone.demo.rxjavasample.activity.view.ViewListFactory;
 
 import java.util.List;
 import java.util.Random;
@@ -20,9 +20,9 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
     private List<String> mContents;
 
     public TextListAdapter() {
-        super(R.layout.item1, Configs.VIEW_TITLES);
+        super(R.layout.item1, ViewListFactory.VIEW_TITLES);
         mRandom = new Random();
-        mContents = Configs.VIEW_NAMES;
+        mContents = ViewListFactory.VIEW_NAMES;
     }
 
     public TextListAdapter(List<String> titles) {
@@ -60,17 +60,9 @@ public class TextListAdapter extends RBaseAdapter<String, RBaseAdapter.BaseHolde
         holder.itemView.setBackgroundColor(bg);
         tv2.setTextColor(tc);
         tv2.setText(text);
-//        holder.itemView.setOnTouchListener((v, event) -> {
-//            if (event.getX() <= tv2.getX() + tv2.getWidth() && event.getY() <= tv2.getY() + tv2.getHeight()) {
-//                tv2.requestFocusFromTouch();
-//            } else {
-//                holder.itemView.requestFocusFromTouch();
-//            }
-//            return false;
-//        });
     }
 
     private int inv(int co) {
-        return (255 * 3 - co) / 2;
+        return 255 - co;
     }
 }
