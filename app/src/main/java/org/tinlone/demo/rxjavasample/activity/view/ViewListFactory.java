@@ -1,7 +1,6 @@
 package org.tinlone.demo.rxjavasample.activity.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 
 import org.tinlone.demo.rxjavasample.widget.BezierPathView;
@@ -11,10 +10,11 @@ import org.tinlone.demo.rxjavasample.widget.DrawText;
 import org.tinlone.demo.rxjavasample.widget.PathView;
 import org.tinlone.demo.rxjavasample.widget.RegionView;
 import org.tinlone.demo.rxjavasample.widget.TestView1;
-import org.tinlone.demo.rxjavasample.widget.WhatsPaint;
+import org.tinlone.demo.rxjavasample.widget.WhatsPaintA;
+import org.tinlone.demo.rxjavasample.widget.WhatsPaintB;
+import org.tinlone.demo.rxjavasample.widget.WhatsPaintC;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +32,9 @@ public class ViewListFactory {
             add("自定义控件学习5");
             add("自定义控件学习6-1");
             add("自定义控件学习6-2");
-            add("自定义控件学习7");
+            add("自定义控件学习7-1");
+            add("自定义控件学习7-2");
+            add("自定义控件学习7-3");
         }
     };
     public static final List<String> VIEW_NAMES = new ArrayList<String>() {
@@ -44,7 +46,9 @@ public class ViewListFactory {
             add("\ndrawText 基本操作");
             add("\n贝塞尔曲线 - 轨迹");
             add("\n贝塞尔曲线 - 波浪");
-            add("\n画笔属性详解");
+            add("\n画笔属性详解-画笔属性");
+            add("\n画笔属性详解-path离散");
+            add("\n画笔属性详解-path印章");
         }
     };
 
@@ -72,7 +76,11 @@ public class ViewListFactory {
             case 6:
                 return new BezierWaveView(context);
             case 7:
-                return new WhatsPaint(context);
+                return new WhatsPaintA(context);
+            case 8:
+                return new WhatsPaintB(context);
+            case 9:
+                return new WhatsPaintC(context);
             default:
                 return null;
         }
