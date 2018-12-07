@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.tinlone.demo.rxjavasample.activity.ViewListActivity">
+    tools:context="org.tinlone.demo.rxjavasample.activity.view.ViewListActivity">
 
 <include layout="@layout/comment_title"/>
 

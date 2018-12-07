@@ -33,7 +33,7 @@
             android:label="@string/title_activity_net_video"
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".activity.ViewListActivity" />
+        <activity android:name=".activity.view.ViewListActivity" />
         <activity android:name=".activity.view.ViewATestActivity" />
         <activity android:name=".activity.rx.RxListActivity" />
         <activity android:name=".activity.rx.RxLogActivity"></activity>

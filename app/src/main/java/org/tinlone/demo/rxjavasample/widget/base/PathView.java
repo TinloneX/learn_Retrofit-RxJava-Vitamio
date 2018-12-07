@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.widget;
+package org.tinlone.demo.rxjavasample.widget.base;
 
 
 import android.content.Context;

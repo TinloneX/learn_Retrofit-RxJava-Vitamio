@@ -3,16 +3,17 @@ package org.tinlone.demo.rxjavasample.activity.view;
 import android.app.Activity;
 import android.view.View;
 
-import org.tinlone.demo.rxjavasample.widget.BezierPathView;
-import org.tinlone.demo.rxjavasample.widget.BezierWaveView;
-import org.tinlone.demo.rxjavasample.widget.CanvasChangeView;
-import org.tinlone.demo.rxjavasample.widget.DrawText;
-import org.tinlone.demo.rxjavasample.widget.PathView;
-import org.tinlone.demo.rxjavasample.widget.RegionView;
-import org.tinlone.demo.rxjavasample.widget.TestView1;
-import org.tinlone.demo.rxjavasample.widget.WhatsPaintA;
-import org.tinlone.demo.rxjavasample.widget.WhatsPaintB;
-import org.tinlone.demo.rxjavasample.widget.WhatsPaintC;
+import org.tinlone.demo.rxjavasample.widget.ColorMatrixView;
+import org.tinlone.demo.rxjavasample.widget.base.BezierPathView;
+import org.tinlone.demo.rxjavasample.widget.base.BezierWaveView;
+import org.tinlone.demo.rxjavasample.widget.base.CanvasChangeView;
+import org.tinlone.demo.rxjavasample.widget.base.DrawText;
+import org.tinlone.demo.rxjavasample.widget.base.PathView;
+import org.tinlone.demo.rxjavasample.widget.base.RegionView;
+import org.tinlone.demo.rxjavasample.widget.base.TestView1;
+import org.tinlone.demo.rxjavasample.widget.paint.WhatsPaintA;
+import org.tinlone.demo.rxjavasample.widget.paint.WhatsPaintB;
+import org.tinlone.demo.rxjavasample.widget.paint.WhatsPaintC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class ViewListFactory {
             add("自定义控件学习7-1");
             add("自定义控件学习7-2");
             add("自定义控件学习7-3");
+            add("自定义控件学习7-4");
         }
     };
     public static final List<String> VIEW_NAMES = new ArrayList<String>() {
@@ -49,6 +51,7 @@ public class ViewListFactory {
             add("\n画笔属性详解-画笔属性");
             add("\n画笔属性详解-path离散");
             add("\n画笔属性详解-path印章");
+            add("\n画笔属性详解-ColorMatrix");
         }
     };
 
@@ -81,6 +84,8 @@ public class ViewListFactory {
                 return new WhatsPaintB(context);
             case 9:
                 return new WhatsPaintC(context);
+            case 10:
+                return new ColorMatrixView(context);
             default:
                 return null;
         }

@@ -11,15 +11,12 @@ import android.widget.TextView;
 
 import org.tinlone.demo.rxjavasample.R;
 import org.tinlone.demo.rxjavasample.activity.rx.RxListActivity;
+import org.tinlone.demo.rxjavasample.activity.view.ViewListActivity;
 import org.tinlone.demo.rxjavasample.util.CountObserver;
 import org.tinlone.demo.rxjavasample.util.CountUtil;
-import org.tinlone.demo.rxjavasample.util.TLog;
 import org.tinlone.demo.rxjavasample.video.NetVideoActivity;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.Observer;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -90,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             ? Environment.getExternalStorageDirectory().getAbsolutePath()
                             : "获取路径失败"))
                     .delay(1, TimeUnit.SECONDS);
+
 
     private void multiAsync() {
         mTvInfo.append("\n 模拟上传图片");

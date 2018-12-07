@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.widget;
+package org.tinlone.demo.rxjavasample.widget.paint;
 
 import android.content.Context;
 import android.graphics.Canvas;

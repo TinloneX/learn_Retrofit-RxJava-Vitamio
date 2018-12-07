@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.widget;
+package org.tinlone.demo.rxjavasample.widget.base;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -47,8 +47,8 @@ public class BezierWaveView extends View {
         textPaint = new Paint();
         paint.setStrokeWidth(2);
         paint.setStyle(Paint.Style.STROKE);
-        textPaint.setStyle(Paint.Style.STROKE);
-        textPaint.setTextSize(40);
+        textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        textPaint.setTextSize(60);
         textPaint.setColor(Color.WHITE);
         mBackGround = new ColorDrawable(Color.BLACK);
         path = new Path();
@@ -62,8 +62,8 @@ public class BezierWaveView extends View {
             if (event.getX() <= 100 && event.getY() <= 100) {
                 drawWave = !drawWave;
                 startAnim();
-            }else {
-                if (animator!=null){
+            } else {
+                if (animator != null) {
                     animator.cancel();
                 }
             }
@@ -118,7 +118,7 @@ public class BezierWaveView extends View {
             animator.setInterpolator(new LinearInterpolator());
             animator.addUpdateListener(animation -> {
                 dx = (int) animation.getAnimatedValue();
-                dy = dx;
+                dy = 2 * dx;
                 postInvalidate();
             });
         }

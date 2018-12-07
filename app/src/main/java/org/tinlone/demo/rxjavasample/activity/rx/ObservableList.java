@@ -215,6 +215,7 @@ public class ObservableList {
         add("takeWhile 当满足条件取");
         add("take 取前n项");
         add("concatArray(obdfi,ob1ja,obdcc) 串接Observable数组");
+        add("zzz");
     }};
     /**
      * 每个操作预计步骤
@@ -233,6 +234,7 @@ public class ObservableList {
         add(10 + 2);
         add(10 + 2);
         add(DATA_SRC_1.size() + 5 + DEMO_STRING_LONG.length() * 2 + 2);
+        add(10 + 2);
     }};
     /**
      * 列表操作

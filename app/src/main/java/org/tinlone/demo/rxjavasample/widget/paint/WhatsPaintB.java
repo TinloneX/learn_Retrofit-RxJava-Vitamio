@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.widget;
+package org.tinlone.demo.rxjavasample.widget.paint;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.DiscretePathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.SumPathEffect;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -27,6 +28,7 @@ public class WhatsPaintB extends View {
     private DiscretePathEffect dpe3;
     private CornerPathEffect cp5;
     private DashPathEffect dp10;
+    private SumPathEffect spe;
 
     public WhatsPaintB(Context context) {
         this(context, null);
@@ -44,12 +46,13 @@ public class WhatsPaintB extends View {
     private void init() {
         paint = new Paint();
         path = getPath();
-        cp5 = new CornerPathEffect(5);
+        cp5 = new CornerPathEffect(15);
         mBackground = new ColorDrawable(Color.BLACK);
         dpe1 = new DiscretePathEffect(2, 5);
         dpe2 = new DiscretePathEffect(6, 5);
         dpe3 = new DiscretePathEffect(6, 15);
         dp10 = new DashPathEffect(new float[]{10, 10}, 15);
+        spe = new SumPathEffect(cp5,dp10);
     }
 
     private Path getPath() {
@@ -76,20 +79,24 @@ public class WhatsPaintB extends View {
         paint.setColor(Color.GREEN);
         canvas.drawPath(path, paint);
 
-        canvas.translate(0, 200);
+        canvas.translate(0, 150);
         paint.setPathEffect(dp10);
         canvas.drawPath(path, paint);
 //第二条Path
-        canvas.translate(0, 200);
+        canvas.translate(0, 150);
         paint.setPathEffect(dpe1);
         canvas.drawPath(path, paint);
 //第三条Path
-        canvas.translate(0, 200);
+        canvas.translate(0, 150);
         paint.setPathEffect(dpe2);
         canvas.drawPath(path, paint);
 //第四条Path
-        canvas.translate(0, 200);
+        canvas.translate(0, 150);
         paint.setPathEffect(dpe3);
+        canvas.drawPath(path, paint);
+
+        canvas.translate(0, 150);
+        paint.setPathEffect(spe);
         canvas.drawPath(path, paint);
     }
 

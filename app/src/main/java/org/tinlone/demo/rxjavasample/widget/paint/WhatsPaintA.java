@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.widget;
+package org.tinlone.demo.rxjavasample.widget.paint;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

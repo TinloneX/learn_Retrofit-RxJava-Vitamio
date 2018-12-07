@@ -1,4 +1,4 @@
-package org.tinlone.demo.rxjavasample.activity;
+package org.tinlone.demo.rxjavasample.activity.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import org.tinlone.demo.rxjavasample.R;
-import org.tinlone.demo.rxjavasample.activity.view.ViewATestActivity;
 import org.tinlone.demo.rxjavasample.adapter.TextListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Administrator
@@ -38,4 +38,8 @@ public class ViewListActivity extends AppCompatActivity {
         rvList.setAdapter(adapter);
     }
 
+    @OnClick(R.id.iv_back)
+    public void onBackClick(){
+        finish();
+    }
 }
