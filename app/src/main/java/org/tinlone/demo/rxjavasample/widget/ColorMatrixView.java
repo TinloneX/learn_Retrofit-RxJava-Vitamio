@@ -17,6 +17,7 @@ import android.view.View;
 import org.tinlone.demo.rxjavasample.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ColorMatrixView extends View {
 
@@ -109,6 +110,33 @@ public class ColorMatrixView extends View {
                 0, 1, 0, 0, 0,
                 0, 0, 0, 1, 0
         });
+        ColorMatrix concatMatrix1 = new ColorMatrix(new float[]{
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+        });
+        ColorMatrix concatMatrix2 = new ColorMatrix(new float[]{
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+        });
+        ColorMatrix concatMatrix3 = new ColorMatrix(new float[]{
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+        });
+        ColorMatrix r30Matrix = new ColorMatrix();
+        r30Matrix.setRotate(0, 30);
+        ColorMatrix g30Matrix = new ColorMatrix();
+        r30Matrix.setRotate(1, 30);
+        ColorMatrix b30Matrix = new ColorMatrix();
+        r30Matrix.setRotate(2, 30);
+        concatMatrix1.setConcat(redPipe, r2gMatrix);
+        concatMatrix2.setConcat(r2gMatrix, redPipe);
+        concatMatrix3.setConcat(bluePipe, lightPipe_12);
         ColorMatrixColorFilter blueFilter = new ColorMatrixColorFilter(bluePipe);
         ColorMatrixColorFilter greenFilter = new ColorMatrixColorFilter(greenPipe);
         ColorMatrixColorFilter greenFilter_50 = new ColorMatrixColorFilter(greenPipe_50);
@@ -119,6 +147,12 @@ public class ColorMatrixView extends View {
         ColorMatrixColorFilter r2gFilter = new ColorMatrixColorFilter(r2gMatrix);
         ColorMatrixColorFilter r2bFilter = new ColorMatrixColorFilter(r2bMatrix);
         ColorMatrixColorFilter g2bFilter = new ColorMatrixColorFilter(g2bMatrix);
+        ColorMatrixColorFilter r30Filter = new ColorMatrixColorFilter(r30Matrix);
+        ColorMatrixColorFilter g30Filter = new ColorMatrixColorFilter(g30Matrix);
+        ColorMatrixColorFilter b30Filter = new ColorMatrixColorFilter(b30Matrix);
+        ColorMatrixColorFilter concatFilter1 = new ColorMatrixColorFilter(concatMatrix1);
+        ColorMatrixColorFilter concatFilter2 = new ColorMatrixColorFilter(concatMatrix2);
+        ColorMatrixColorFilter concatFilter3 = new ColorMatrixColorFilter(concatMatrix3);
         bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.a);
         rect1 = new Rect(0, 0, 800, 800 * bitmap.getHeight() / bitmap.getWidth());
         filters.add(blueFilter);
@@ -131,6 +165,12 @@ public class ColorMatrixView extends View {
         filters.add(r2gFilter);
         filters.add(r2bFilter);
         filters.add(g2bFilter);
+        filters.add(r30Filter);
+        filters.add(g30Filter);
+        filters.add(b30Filter);
+        filters.add(concatFilter1);
+        filters.add(concatFilter2);
+        filters.add(concatFilter3);
         filterType = new ArrayList<String>() {{
             add("蓝色通道");
             add("绿色通道");
@@ -142,6 +182,12 @@ public class ColorMatrixView extends View {
             add("红绿反色");
             add("红蓝反色");
             add("绿蓝反色");
+            add("红色旋转30度");
+            add("绿色旋转30度");
+            add("蓝色旋转30度");
+            add("红色通道 x 红转绿\n" + Arrays.toString(concatMatrix1.getArray()));
+            add("红转绿 x 红色通道\n" + Arrays.toString(concatMatrix2.getArray()));
+            add("蓝色通道 x 亮度提升\n" + Arrays.toString(concatMatrix3.getArray()));
         }};
     }
 

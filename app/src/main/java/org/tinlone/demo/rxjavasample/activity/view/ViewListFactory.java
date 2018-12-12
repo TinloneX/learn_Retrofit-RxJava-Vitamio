@@ -3,7 +3,9 @@ package org.tinlone.demo.rxjavasample.activity.view;
 import android.app.Activity;
 import android.view.View;
 
+import org.tinlone.demo.rxjavasample.widget.ColorFilterView;
 import org.tinlone.demo.rxjavasample.widget.ColorMatrixView;
+import org.tinlone.demo.rxjavasample.widget.XfermodeView;
 import org.tinlone.demo.rxjavasample.widget.base.BezierPathView;
 import org.tinlone.demo.rxjavasample.widget.base.BezierWaveView;
 import org.tinlone.demo.rxjavasample.widget.base.CanvasChangeView;
@@ -37,6 +39,8 @@ public class ViewListFactory {
             add("自定义控件学习7-2");
             add("自定义控件学习7-3");
             add("自定义控件学习7-4");
+            add("自定义控件学习7-5");
+            add("自定义控件学习7-6");
         }
     };
     public static final List<String> VIEW_NAMES = new ArrayList<String>() {
@@ -52,6 +56,8 @@ public class ViewListFactory {
             add("\n画笔属性详解-path离散");
             add("\n画笔属性详解-path印章");
             add("\n画笔属性详解-ColorMatrix");
+            add("\n画笔属性详解-ColorFilter");
+            add("\n画笔属性详解-Xfermode");
         }
     };
 
@@ -86,6 +92,10 @@ public class ViewListFactory {
                 return new WhatsPaintC(context);
             case 10:
                 return new ColorMatrixView(context);
+            case 11:
+                return new ColorFilterView(context);
+            case 12:
+                return new XfermodeView(context);
             default:
                 return null;
         }
