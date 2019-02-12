@@ -31,12 +31,15 @@
             android:name=".video.NetVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_net_video"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
+        <activity android:name=".video.JieCaoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.view.ViewListActivity" />
         <activity android:name=".activity.view.ViewATestActivity" />
         <activity android:name=".activity.rx.RxListActivity" />
-        <activity android:name=".activity.rx.RxLogActivity"></activity>
+        <activity android:name=".activity.rx.RxLogActivity" />
     </application>
 
 </manifest>

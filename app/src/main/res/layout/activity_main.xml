@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/button1"
         style="@style/normal_button"
-        android:text="Vitamio视频播放" />
+        android:text="视频播放" />
 
     <Button
         android:id="@+id/button2"

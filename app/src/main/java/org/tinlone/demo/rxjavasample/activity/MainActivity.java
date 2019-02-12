@@ -14,7 +14,9 @@ import org.tinlone.demo.rxjavasample.activity.rx.RxListActivity;
 import org.tinlone.demo.rxjavasample.activity.view.ViewListActivity;
 import org.tinlone.demo.rxjavasample.util.CountObserver;
 import org.tinlone.demo.rxjavasample.util.CountUtil;
+import org.tinlone.demo.rxjavasample.video.JieCaoActivity;
 import org.tinlone.demo.rxjavasample.video.NetVideoActivity;
+import org.tinlone.demo.rxjavasample.widget.TMessageDialog;
 
 import java.util.Observer;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Button mButton5;
     private Disposable mCountUp;
     private Disposable subscribe;
+    private TMessageDialog tMessageDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button1:
-                startActivity(new Intent(MainActivity.this, NetVideoActivity.class));
+                initMessageDialog();
+                tMessageDialog.show();
                 break;
             case R.id.button2:
                 multiAsync();
@@ -75,6 +79,27 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    private void initMessageDialog() {
+        tMessageDialog = new TMessageDialog(this)
+                .withoutMid()
+                .title("选择播放器播放视频")
+                .left("Vitamio")
+                .right("JieCao")
+                .doClick(new TMessageDialog.DoClickListener() {
+                    @Override
+                    public void onClickLeft(View view) {
+                        startActivity(new Intent(MainActivity.this, NetVideoActivity.class));
+                        tMessageDialog.dismiss();
+                    }
+
+                    @Override
+                    public void onClickRight(View view) {
+                        startActivity(new Intent(MainActivity.this, JieCaoActivity.class));
+                        tMessageDialog.dismiss();
+                    }
+                });
     }
 
     Function<Integer, ObservableSource<Boolean>> doingOne = o ->
