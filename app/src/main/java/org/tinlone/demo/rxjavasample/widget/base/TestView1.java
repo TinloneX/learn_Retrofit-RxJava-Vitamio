@@ -18,9 +18,14 @@ import java.util.Random;
  */
 
 public class TestView1 extends View {
-    private Context mContext;
     private Paint mPaint;
     private Random mRandom;
+    private float[] points;
+    private RectF rect;
+    private Rect rect2;
+    private RectF rectx;
+    private RectF rect1;
+    private RectF rectx2;
 
     public TestView1(Context context) {
         this(context, null);
@@ -32,24 +37,29 @@ public class TestView1 extends View {
 
     public TestView1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
-        mContext = context;
+    private void init() {
         mRandom = new Random();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(20);
         mPaint.setShadowLayer(10, 15, 15, Color.GRAY);
+        points = new float[2000];
+        rect = new RectF(820, 80, 810, 800);
+        rect2 = new Rect(830, 80, 920, 800);
+        rectx = new RectF(200, 20, 600, 200);
+        rect1 = new RectF(500, 110, 100, 1100);
+        rectx2 = new RectF(600, 110, 900, 1100);
 
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         canvas.drawRGB(255, 255, 255);
 
         canvas.drawCircle(400, 100, 80, mPaint);
@@ -57,11 +67,9 @@ public class TestView1 extends View {
         canvas.drawLines(pts, mPaint);
 
         canvas.drawPoint(400, 100, mPaint);
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        int height = getHeight();
 
-        mPaint.setStrokeWidth(8);
-        float[] points = new float[2000];
         for (int i = 0; i < points.length; i++) {
             if (i % 2 == 0) {
                 points[i] = mRandom.nextInt(width);
@@ -69,18 +77,17 @@ public class TestView1 extends View {
                 points[i] = mRandom.nextInt(height);
             }
         }
+        mPaint.setStrokeWidth(8);
+
         canvas.drawPoints(points, 250, 750, mPaint);
 
         canvas.drawRect(210, 210, 800, 800, mPaint);
 
-        RectF rect = new RectF(820, 80, 810, 800);
         canvas.drawRect(rect, mPaint);
 
-        Rect rect2 = new Rect(830, 80, 920, 800);
         canvas.drawRect(rect2, mPaint);
 
         mPaint.setColor(Color.GREEN);
-        RectF rectx = new RectF(200, 20, 600, 200);
         //画矩形
         canvas.drawRect(rectx, mPaint);
         //更改画笔颜色
@@ -88,10 +95,8 @@ public class TestView1 extends View {
         //同一个矩形画椭圆
         canvas.drawOval(rectx, mPaint);
 
-        RectF rect1 = new RectF(500, 110, 100, 1100);
         canvas.drawArc(rect1, 0, 190, true, mPaint);
 
-        RectF rectx2 = new RectF(600, 110, 900, 1100);
         canvas.drawArc(rectx2, 0, 190, false, mPaint);
     }
 

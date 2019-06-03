@@ -1,6 +1,7 @@
 package org.tinlone.demo.rxjavasample.widget.paint;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,7 +9,6 @@ import android.graphics.CornerPathEffect;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -18,17 +18,15 @@ import android.view.animation.LinearInterpolator;
 public class WhatsPaintA extends View {
 
     private Paint paint;
-    private ColorDrawable mBackground;
     private Path path;
-    private Paint textPaint;
     private Path path1;
     private CornerPathEffect cp100;
     private CornerPathEffect cp200;
     private Path path2;
-    private DashPathEffect dp1;
     private DashPathEffect dp2;
     private int df;
     private ValueAnimator anim1;
+    private DashPathEffect dp1;
 
     public WhatsPaintA(Context context) {
         this(context, null);
@@ -52,6 +50,7 @@ public class WhatsPaintA extends View {
         cp100 = new CornerPathEffect(100);
         cp200 = new CornerPathEffect(200);
         dp2 = new DashPathEffect(new float[]{20, 10, 50, 100}, 15);
+       dp1 = new DashPathEffect(new float[]{20, 10, 100, 100}, df);
     }
 
     @Override
@@ -111,7 +110,7 @@ public class WhatsPaintA extends View {
         paint.setColor(Color.RED);
 //使用DashPathEffect画线段
 //实际请不要这样用，频繁生成对象会越来越卡
-        dp1 = new DashPathEffect(new float[]{20, 10, 100, 100}, df);
+//        DashPathEffect dp1 = new DashPathEffect(new float[]{20, 10, 100, 100}, df);
         paint.setPathEffect(dp1);
         canvas.translate(0, 50);
         canvas.drawPath(path2, paint);
@@ -122,12 +121,12 @@ public class WhatsPaintA extends View {
         canvas.drawPath(path2, paint);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                anim1();
-                return true;
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            anim1();
+            return true;
         }
         return super.onTouchEvent(event);
     }
@@ -139,12 +138,9 @@ public class WhatsPaintA extends View {
             anim1.setRepeatMode(ValueAnimator.RESTART);
             anim1.setRepeatCount(ValueAnimator.INFINITE);
             anim1.setInterpolator(new LinearInterpolator());
-            anim1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    df = (int) animation.getAnimatedValue();
-                    invalidate();
-                }
+            anim1.addUpdateListener(animation -> {
+                df = (int) animation.getAnimatedValue();
+                invalidate();
             });
         }
         anim1.start();

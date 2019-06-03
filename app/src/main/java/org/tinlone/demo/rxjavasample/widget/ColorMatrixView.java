@@ -1,5 +1,6 @@
 package org.tinlone.demo.rxjavasample.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,7 +29,21 @@ public class ColorMatrixView extends View {
     private ArrayList<ColorMatrixColorFilter> filters = new ArrayList<>();
     private int index = 0;
     private Paint textPaint;
-    private ArrayList<String> filterType;
+    private ArrayList<String> filterType = new ArrayList<String>() {{
+        add("蓝色通道");
+        add("绿色通道");
+        add("红色通道");
+        add("绿蓝饱和度+50");
+        add("反色(底片效果)");
+        add("亮度提升(1.2倍)");
+        add("灰色图");
+        add("红绿反色");
+        add("红蓝反色");
+        add("绿蓝反色");
+        add("红色旋转30度");
+        add("绿色旋转30度");
+        add("蓝色旋转30度");
+    }};
 
     public ColorMatrixView(Context context) {
         this(context, null);
@@ -171,26 +186,14 @@ public class ColorMatrixView extends View {
         filters.add(concatFilter1);
         filters.add(concatFilter2);
         filters.add(concatFilter3);
-        filterType = new ArrayList<String>() {{
-            add("蓝色通道");
-            add("绿色通道");
-            add("红色通道");
-            add("绿蓝饱和度+50");
-            add("反色(底片效果)");
-            add("亮度提升(1.2倍)");
-            add("灰色图");
-            add("红绿反色");
-            add("红蓝反色");
-            add("绿蓝反色");
-            add("红色旋转30度");
-            add("绿色旋转30度");
-            add("蓝色旋转30度");
-            add("红色通道 x 红转绿\n" + Arrays.toString(concatMatrix1.getArray()));
-            add("红转绿 x 红色通道\n" + Arrays.toString(concatMatrix2.getArray()));
-            add("蓝色通道 x 亮度提升\n" + Arrays.toString(concatMatrix3.getArray()));
-        }};
+
+        filterType.add("红色通道 x 红转绿\n" + Arrays.toString(concatMatrix1.getArray()));
+        filterType.add("红转绿 x 红色通道\n" + Arrays.toString(concatMatrix2.getArray()));
+        filterType.add("蓝色通道 x 亮度提升\n" + Arrays.toString(concatMatrix3.getArray()));
+
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

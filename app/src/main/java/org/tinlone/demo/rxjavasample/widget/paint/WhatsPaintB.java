@@ -1,6 +1,6 @@
 package org.tinlone.demo.rxjavasample.widget.paint;
 
-import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,14 +15,12 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 public class WhatsPaintB extends View {
 
     private Paint paint;
     private ColorDrawable mBackground;
     private Path path;
-    private ValueAnimator anim1;
     private DiscretePathEffect dpe1;
     private DiscretePathEffect dpe2;
     private DiscretePathEffect dpe3;
@@ -100,25 +98,12 @@ public class WhatsPaintB extends View {
         canvas.drawPath(path, paint);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                return true;
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            return true;
         }
         return super.onTouchEvent(event);
-    }
-
-    public void anim1() {
-        if (anim1 == null) {
-            anim1 = ValueAnimator.ofInt(0, 230);
-            anim1.setDuration(3000);
-            anim1.setRepeatMode(ValueAnimator.RESTART);
-            anim1.setRepeatCount(ValueAnimator.INFINITE);
-            anim1.setInterpolator(new LinearInterpolator());
-            anim1.addUpdateListener(animation -> {
-            });
-        }
-        anim1.start();
     }
 }

@@ -1,5 +1,6 @@
 package org.tinlone.demo.rxjavasample.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,10 +27,31 @@ public class ColorFilterView extends View {
     private Paint paint;
     private Paint textPaint;
     private ArrayList<ColorFilter> filters;
-    private ArrayList<String> infos;
     private Bitmap bitmap;
     private Rect rect;
     private int index = 0;
+
+    private ArrayList<String> info = new ArrayList<String>() {{
+        add("LightingColorFilter -> 仅保留绿色");
+        add("LightingColorFilter -> 仅强化蓝色");
+        add("图形混合滤镜 -> 红色 -> MULTIPLY");
+        add("图形混合滤镜 -> 红色 -> CLEAR");
+        add("图形混合滤镜 -> 红色 -> SRC");
+        add("图形混合滤镜 -> 绿色 -> SRC_IN");
+        add("图形混合滤镜 -> 绿色 -> SRC_OUT");
+        add("图形混合滤镜 -> 绿色 -> SRC_OVER");
+        add("图形混合滤镜 -> 红色 -> DST");
+        add("图形混合滤镜 -> 红色 -> SCREEN");
+        add("图形混合滤镜 -> 红色 -> ADD");
+        add("图形混合滤镜 -> 红色 -> DARKEN");
+        add("图形混合滤镜 -> 红色 -> DST_ATOP");
+        add("图形混合滤镜 -> 红色 -> DST_IN");
+        add("图形混合滤镜 -> 红色 -> DST_OUT");
+        add("图形混合滤镜 -> 红色 -> DST_OVER");
+        add("图形混合滤镜 -> 红色 -> LIGHTEN");
+        add("图形混合滤镜 -> 红色 -> OVERLAY");
+        add("图形混合滤镜 -> 红色 -> XOR");
+    }};
 
     public ColorFilterView(Context context) {
         this(context, null);
@@ -73,27 +95,6 @@ public class ColorFilterView extends View {
         PorterDuffColorFilter pdFilter_lghtn = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.LIGHTEN);
         PorterDuffColorFilter pdFilter_ovly = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.OVERLAY);
         PorterDuffColorFilter pdFilter_xor = new PorterDuffColorFilter(Color.RED, PorterDuff.Mode.XOR);
-        infos = new ArrayList<String>() {{
-            add("LightingColorFilter -> 仅保留绿色");
-            add("LightingColorFilter -> 仅强化蓝色");
-            add("图形混合滤镜 -> 红色 -> MULTIPLY");
-            add("图形混合滤镜 -> 红色 -> CLEAR");
-            add("图形混合滤镜 -> 红色 -> SRC");
-            add("图形混合滤镜 -> 绿色 -> SRC_IN");
-            add("图形混合滤镜 -> 绿色 -> SRC_OUT");
-            add("图形混合滤镜 -> 绿色 -> SRC_OVER");
-            add("图形混合滤镜 -> 红色 -> DST");
-            add("图形混合滤镜 -> 红色 -> SCREEN");
-            add("图形混合滤镜 -> 红色 -> ADD");
-            add("图形混合滤镜 -> 红色 -> DARKEN");
-            add("图形混合滤镜 -> 红色 -> DST_ATOP");
-            add("图形混合滤镜 -> 红色 -> DST_IN");
-            add("图形混合滤镜 -> 红色 -> DST_OUT");
-            add("图形混合滤镜 -> 红色 -> DST_OVER");
-            add("图形混合滤镜 -> 红色 -> LIGHTEN");
-            add("图形混合滤镜 -> 红色 -> OVERLAY");
-            add("图形混合滤镜 -> 红色 -> XOR");
-        }};
         filters.add(lcFilter1);
         filters.add(lcFilter2);
         filters.add(pdFilter_mul);
@@ -115,6 +116,7 @@ public class ColorFilterView extends View {
         filters.add(pdFilter_xor);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -135,6 +137,6 @@ public class ColorFilterView extends View {
         paint.setColorFilter(filters.get(index % filters.size()));
         canvas.drawBitmap(bitmap, null, rect, paint);
         canvas.translate(0, 450);
-        canvas.drawText(infos.get(index % infos.size()), 50, 20, textPaint);
+        canvas.drawText(info.get(index % info.size()), 50, 20, textPaint);
     }
 }

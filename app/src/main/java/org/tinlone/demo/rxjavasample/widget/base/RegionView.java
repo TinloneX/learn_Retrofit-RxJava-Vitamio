@@ -21,19 +21,17 @@ import android.view.View;
 public class RegionView extends View {
 
     private Paint mPaint;
-    private Region region1;
     private RegionIterator iterator1;
     private Rect rect;
-    private RectF rectF;
-    private Path path;
-    private Region region2;
     private RegionIterator iterator2;
     private Rect rect2;
-    private Region region3;
     private RegionIterator iterator3;
     private Rect rect3;
     private Rect rect4;
     private Rect rect5;
+    private Region region;
+    private Region region4;
+    private RegionIterator regionIterator;
 
     public RegionView(Context context) {
         this(context, null);
@@ -50,17 +48,17 @@ public class RegionView extends View {
 
     private void init() {
         mPaint = new Paint();
-        region1 = new Region(10, 10, 10, 100);
+        Region region1 = new Region(10, 10, 10, 100);
         region1.set(100, 100, 200, 200);
         iterator1 = new RegionIterator(region1);
         rect = new Rect();
         rect2 = new Rect();
         rect3 = new Rect();
-        rectF = new RectF(200, 200, 250, 400);
-        path = new Path();
+        RectF rectF = new RectF(200, 200, 250, 400);
+        Path path = new Path();
         path.addOval(rectF, Path.Direction.CCW);
-        region2 = new Region();
-        region3 = new Region();
+        Region region2 = new Region();
+        Region region3 = new Region();
         region2.setPath(path, new Region(200, 200, 250, 300));
         region3.setPath(path, new Region(200, 200, 250, 500));
         iterator2 = new RegionIterator(region2);
@@ -68,6 +66,10 @@ public class RegionView extends View {
 
         rect4 = new Rect(300, 500, 600, 600);
         rect5 = new Rect(400, 400, 500, 700);
+        region = new Region(rect4);
+        region4 = new Region(rect5);
+        regionIterator = new RegionIterator(region);
+        rect4 = new Rect();
     }
 
 
@@ -92,20 +94,18 @@ public class RegionView extends View {
 
         canvas.drawRect(rect4, mPaint);
         canvas.drawRect(rect5, mPaint);
-        Region region = new Region(rect4);
-        Region region2 = new Region(rect5);
+
 //        region.op(region2, Region.Op.INTERSECT);
-        region.op(region2, Region.Op.DIFFERENCE);
+        region.op(region4, Region.Op.DIFFERENCE);
 //        region.op(region2, Region.Op.REPLACE);
 //        region.op(region2, Region.Op.REVERSE_DIFFERENCE);
 //        region.op(region2, Region.Op.UNION);
 //        region.op(region2, Region.Op.XOR);
         mPaint.setColor(Color.GREEN);
         mPaint.setStyle(Paint.Style.FILL);
-        RegionIterator regionIterator = new RegionIterator(region);
-        Rect rect = new Rect();
-        while (regionIterator.next(rect)) {
-            canvas.drawRect(rect, mPaint);
+
+        while (regionIterator.next(rect4)) {
+            canvas.drawRect(rect4, mPaint);
         }
 
 

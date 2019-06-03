@@ -1,5 +1,6 @@
 package org.tinlone.demo.rxjavasample.widget.base;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,8 +18,6 @@ public class BezierPathView extends View {
     private Path path1;
     private ColorDrawable backGround;
     private Path path2;
-    private float mPreX;
-    private float mPreY;
 
     public BezierPathView(Context context) {
         super(context);
@@ -37,7 +36,7 @@ public class BezierPathView extends View {
 
     private void init() {
         paint = new Paint();
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(4);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GREEN);
         paint.setTextSize(24);
@@ -46,10 +45,11 @@ public class BezierPathView extends View {
         path2 = new Path();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mPreX = event.getX();
-        mPreY = event.getY();
+        float mPreX = event.getX();
+        float mPreY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (mPreX <= 50 && mPreY <= 50) {

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -21,6 +22,15 @@ import android.view.View;
 public class PathView extends View {
     private Paint paint;
     private Context mContext;
+    private Path path;
+    private Path cwRectPath;
+    private RectF rect1;
+    private RectF rect2;
+    private float[] radii;
+    private Path pathc;
+    private Path patho;
+    private Path patha;
+    private float[] pos;
 
     public PathView(Context context) {
         this(context, null);
@@ -41,25 +51,54 @@ public class PathView extends View {
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
+        path = new Path();
+        path.moveTo(100, 100);
+        path.lineTo(100, 400);
+        path.lineTo(300, 400);
+        path.close();
+
+        // CW顺时针 CCW逆时针绘制路径
+        cwRectPath = new Path();
+        RectF rectF = new RectF(350, 250, 540, 400);
+        cwRectPath.addRect(rectF, Path.Direction.CCW);
+
+        rect1 = new RectF(650, 50, 740, 300);
+
+        rect2 = new RectF(790, 50, 880, 200);
+        radii = new float[]{10, 15, 20, 25, 30, 35, 40, 45};
+
+        pathc = new Path();
+
+        pathc.addCircle(200, 250, 100, Path.Direction.CCW);
+
+        patho = new Path();
+        RectF rect = new RectF(750, 450, 640, 200);
+        patho.addOval(rect, Path.Direction.CCW);
+        patha = new Path();
+        // RectF recta = new RectF(50, 50,240, 200);
+        patha.addArc(rect2, 0, 100);
+        pos = new float[]{10, 1200,
+                110, 1220,
+                200, 1200,
+                310, 1220,
+                400, 1200,
+                510, 1220,
+                600, 1200,
+                710, 1220,
+                800, 1200,
+                910, 1200,
+                1000, 1220
+        };
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        paint.setColor(Color.RED);
         //绘制线
-        Path path = new Path();
-        path.moveTo(100, 100);
-        path.lineTo(100, 400);
-        path.lineTo(300, 400);
-        path.close();
         canvas.drawPath(path, paint);
-        // CW顺时针 CCW逆时针绘制路径
-        Path cwRectPath = new Path();
-        RectF rectF = new RectF(350, 250, 540, 400);
         // 矩形路径
-        cwRectPath.addRect(rectF, Path.Direction.CCW);
         canvas.drawPath(cwRectPath, paint);
         String text = "Hello,World!Hello,You!";
         paint.setColor(Color.GREEN);
@@ -67,27 +106,19 @@ public class PathView extends View {
         //将文本绘制在路径上，文字方向与路径方向一致
         canvas.drawTextOnPath(text, cwRectPath, 0, 20, paint);
         //绘制圆角（等角）矩形
-        RectF rect1 = new RectF(650, 50, 740, 300);
+        paint.setColor(Color.RED);
         path.addRoundRect(rect1, 10, 15, Path.Direction.CCW);
         //绘制圆角（偏角）矩形
-        RectF rect2 = new RectF(790, 50, 880, 200);
-        float radii[] = {10, 15, 20, 25, 30, 35, 40, 45};
+        paint.setColor(Color.BLUE);
         path.addRoundRect(rect2, radii, Path.Direction.CCW);
         canvas.drawPath(path, paint);
         //绘制圆形路径
-        Path pathc = new Path();
-        paint.setColor(Color.RED);
-        pathc.addCircle(200, 250, 100, Path.Direction.CCW);
         canvas.drawPath(pathc, paint);
         // 绘制椭圆路径
-        Path patho = new Path();
-        RectF rect = new RectF(750, 450, 640, 200);
-        patho.addOval(rect, Path.Direction.CCW);
+        paint.setColor(Color.GREEN);
         canvas.drawPath(patho, paint);
         //绘制弧形路径
-        Path patha = new Path();
-        // RectF recta = new RectF(50, 50,240, 200);
-        patha.addArc(rect2, 0, 100);
+        paint.setColor(Color.RED);
         canvas.drawPath(patha, paint);
 
         paint.setColor(Color.DKGRAY);
@@ -110,7 +141,7 @@ public class PathView extends View {
 
         //绘图样式设置为填充且描边
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        canvas.drawText("Hello%20%%World!(FILL_AND_STROKE)", 10, 800, paint);
+        canvas.drawText("Hello,World!(FILL_AND_STROKE)", 10, 800, paint);
         //右倾角 （-0.25）
         paint.setTextSkewX(-0.25f);
         paint.setStyle(Paint.Style.FILL);
@@ -123,18 +154,7 @@ public class PathView extends View {
         canvas.drawText("Hello,World! (1.25ScaleX)", 10, 1100, paint);
         paint.setTextScaleX(0f);
         paint.setTextSkewX(0f);
-        float[] pos = {10, 1200,
-                110, 1220,
-                200, 1200,
-                310, 1220,
-                400, 1200,
-                510, 1220,
-                600, 1200,
-                710, 1220,
-                800, 1200,
-                910, 1200,
-                1000, 1220
-        };
+
         canvas.drawPosText("Hello,World", pos, paint);
         String familyName = "宋体";
         Typeface font = Typeface.create(familyName, Typeface.NORMAL);

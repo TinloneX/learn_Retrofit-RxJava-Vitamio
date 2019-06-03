@@ -5,7 +5,7 @@ import android.view.View;
 
 import org.tinlone.demo.rxjavasample.widget.ColorFilterView;
 import org.tinlone.demo.rxjavasample.widget.ColorMatrixView;
-import org.tinlone.demo.rxjavasample.widget.XfermodeView;
+import org.tinlone.demo.rxjavasample.widget.XferModeView;
 import org.tinlone.demo.rxjavasample.widget.base.BezierPathView;
 import org.tinlone.demo.rxjavasample.widget.base.BezierWaveView;
 import org.tinlone.demo.rxjavasample.widget.base.CanvasChangeView;
@@ -95,7 +95,7 @@ public class ViewListFactory {
             case 11:
                 return new ColorFilterView(context);
             case 12:
-                return new XfermodeView(context);
+                return new XferModeView(context);
             default:
                 return null;
         }

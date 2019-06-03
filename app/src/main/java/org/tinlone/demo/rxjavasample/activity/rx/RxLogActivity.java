@@ -3,6 +3,8 @@ package org.tinlone.demo.rxjavasample.activity.rx;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -29,7 +31,9 @@ public class RxLogActivity extends AppCompatActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.fab)
-    FloatingActionButton mFab;
+    Button mFab;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     private int position;
@@ -42,7 +46,7 @@ public class RxLogActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         position = getIntent().getIntExtra("position", DEFAULT_POSITION);
         tvTitle.setText(ObservableList.RX_TITLE.get(position));
-        mFab.setMax(ObservableList.steps.get(position));
+        progressBar.setMax(ObservableList.steps.get(position));
         doObservable();
         scrollView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
             if (bottom >= (DensityUtil.getScreenHeight() - 300)) {
@@ -53,7 +57,7 @@ public class RxLogActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void onFabClick() {
-        mFab.setProgress(0, true);
+        progressBar.setProgress(0, true);
         if (mDisposable != null) {
             if (!mDisposable.isDisposed()) {
                 mTvInfo.append(String.format("\n中断执行：%s", Timer.end()));
@@ -74,7 +78,7 @@ public class RxLogActivity extends AppCompatActivity {
 
     private void log(int index, Object info) {
         mTvInfo.append(Html.fromHtml(String.format("<br/><font color='#00BFFF'>step%s:</font> %s", index, TLog.valueOf(info))));
-        mFab.setProgress(index + 1, index != 0);
+        progressBar.setProgress(index + 1, index != 0);
         if ("onComplete".equals(String.valueOf(info))) {
             mTvInfo.append(Html.fromHtml(String.format("<br/><font color='#AF0000'>结束执行：%s</font>", Timer.end())));
         }
